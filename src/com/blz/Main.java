@@ -2,8 +2,8 @@ package com.blz;
 
 public class Main {
     public static void main(String[] args) {
-        Linked_List newList  =new Linked_List();
-        newList.last(56);
+        var newList  =new Linked_List();
+        newList.add(56);
         newList.last(30);
         newList.last(70);
         newList.insert(30,40);

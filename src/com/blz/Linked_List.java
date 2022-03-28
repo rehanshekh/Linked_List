@@ -25,7 +25,7 @@ public class Linked_List {
         }
     }
 
-    void insert(int data) {
+    void insert (int data) {
         Node newNode = new Node(data);
         if (Head == null) {
             Head = newNode;
@@ -65,7 +65,7 @@ public class Linked_List {
     public Node search(int data) {
         Node temp = Head;
         while (temp != null) {
-            if (temp.key == data) {
+            if (temp.key==(data)) {
                 return temp;
             }
             temp = temp.next;
@@ -74,7 +74,7 @@ public class Linked_List {
     }
 
     void insert(int prevNum, int findNum) {
-        Node newNode = new Node(findNum);
+        Node newNode = new Node((findNum));
         Node searchnode = this.search(prevNum);
         if (searchnode != null) {
             Node temp = searchnode.next;
