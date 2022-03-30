@@ -1,41 +1,39 @@
 package com.blz;
 
-public class Sorted_Linked_List {
-    Node Head;
-    Node Replace;
+public class Sorted_Linked_List<K extends Comparable<K>> {
+    public Node<K> Head;
 
-    public void add(int data) {
-        Node newNode = new Node(data);
-        addSort(newNode);
+    void add(Node<K> newNode) {
+        insert(newNode);
     }
-        public void addSort(Node newNode){
-        if (Head == null) {
-            Head = newNode;
+
+    public void insert(Node<K> info) {
+        if ((Head == null) || (info.compareTo(Head) < 0)) {
+            info.next = (Head);
+            Head = info;
         } else {
-            if (Head.key > newNode.key) {
-                newNode.next = Head;
-                Head = newNode;
-            } else {
-                Node temp = Head;
-                while ((temp.key < newNode.key) && (temp.next != null)) {
-                    Replace = temp;
-                    temp = temp.next;
-                }if (newNode.key<temp.key){
-                    Replace.next = newNode;
-                    newNode.next = temp;
-                }else if(temp.next == null){
-                 temp.next=newNode;
-                }
+            Node<K> current = Head;
+            while ((current.next != null) && (info.compareTo(current.next) > 0)) {
+                current = current.next;
+            }
+            if (current.next == null) {
+                current.next = info;
+            }
+            if (info.compareTo(current.next) < 0) {
+                info.next = current.next;
+                current.next = info;
             }
         }
     }
 
     public void display() {
-        Node temp = Head;
-        while (temp != null) {
+        System.out.println();
+        Node<K> temp = Head;
+        while (temp.next != null) {
             System.out.print(temp.key + "->");
             temp = temp.next;
         }
-        System.out.print("null");
+        System.out.print(temp.key);
     }
+
 }

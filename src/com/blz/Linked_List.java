@@ -1,12 +1,13 @@
 package com.blz;
 
-public class Linked_List {
-    Node Head;
-    Node Tail;
+public class Linked_List<K extends Comparable<K>> {
+    public Node<K> Head;
+    public Node<K> Tail;
+    int size;
 
-    void add(int data) {
-        Node newNode = new Node(data);
+    void add(Node<K> newNode) {
         if (Head == null) {
+            Tail = newNode;
             Head = newNode;
         } else {
             newNode.next = Head;
@@ -14,58 +15,70 @@ public class Linked_List {
         }
     }
 
-    void last(int data) {
-        Node newNode = new Node(data);
+    void last(Node<K> newNode) {
         if (Head == null) {
             Head = newNode;
+        }
+        if (Tail == null) {
             Tail = newNode;
         } else {
-            Tail.next = newNode;
+            Tail.next = (newNode);
             Tail = newNode;
         }
     }
 
-    void insert (int data) {
-        Node newNode = new Node(data);
+
+    void insert(Node<K> newNode) {
         if (Head == null) {
             Head = newNode;
         } else {
             if (Tail == null) {
                 Tail = newNode;
             } else {
-                newNode.next = Tail;
-                Head.next = newNode;
+                Head.next = (newNode);
+                newNode.next = (Tail);
+
             }
         }
     }
 
     public void display() {
-        Node temp = Head;
-        while (temp != null) {
+        System.out.println();
+        Node<K> temp = Head;
+        while (temp.next != null) {
+            size++;
             System.out.print(temp.key + "->");
             temp = temp.next;
         }
-        System.out.print(temp);
+        System.out.print(temp.key);
     }
 
-    void deleteFirst() {
-        Head = Head.next;
+
+    K deleteFirst() {
+        if (Head != null) {
+            Node<K> element = Head;
+            Head = Head.next;
+            return element.key;
+        }
+        return null;
     }
 
     void deleteLast() {
-        Node temp = Head;
-        Node secondLast = null;
-        while (temp.next != null) {
-            secondLast = temp;
+        Node<K> temp = Head;
+        while (temp.next != Tail) {
+
             temp = temp.next;
         }
-        secondLast.next = null;
+
+        temp.next = (null);
+
     }
 
-    public Node search(int data) {
-        Node temp = Head;
+
+    public Node<K> search(K data) {
+        Node<K> temp = Head;
         while (temp != null) {
-            if (temp.key==(data)) {
+            if (temp.key.equals(data)) {
                 return temp;
             }
             temp = temp.next;
@@ -73,24 +86,28 @@ public class Linked_List {
         return null;
     }
 
-    void insert(int prevNum, int findNum) {
-        Node newNode = new Node((findNum));
-        Node searchnode = this.search(prevNum);
-        if (searchnode != null) {
-            Node temp = searchnode.next;
-            searchnode.next = newNode;
+
+    void insertAfter(K searchNumber, Node<K> newNode) {
+        Node<K> searchNode = this.search(searchNumber);
+        if (searchNode != null) {
+            Node<K> temp = searchNode.next;
+            searchNode.next = newNode;
             newNode.next = temp;
         }
     }
 
-    void delete(int search, int data) {
-        Node newNode = new Node(data);
-        Node searchNode1 = this.search(search);
-        Node searchNode2 = this.search(data);
-        if (searchNode1 != null) {
-            searchNode1.next = searchNode2.next;
+    void delete(K deleteNode) {
+        Node<K> replace = new Node<>(deleteNode);
+        Node<K> searchNode = this.search(deleteNode);
+        Node<K> temp = Head;
+        while (temp != searchNode) {
+            replace = temp;
+            temp = temp.next;
         }
+        replace.next = searchNode.next;
     }
 
 
 }
+
+

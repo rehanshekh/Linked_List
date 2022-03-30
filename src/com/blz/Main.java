@@ -1,25 +1,58 @@
 package com.blz;
 
+
+
 public class Main {
     public static void main(String[] args) {
-        var newList  =new Linked_List();
-        newList.add(56);
-        newList.last(30);
-        newList.last(70);
-        newList.insert(30,40);
-        newList.delete(30,40);
-        newList.display();
-        Sorted_Linked_List myList = new Sorted_Linked_List();
-        myList.add(56);
-        myList.add(30);
-        myList.add(70);
-        myList.add(40);
-        myList.add(1);
-        myList.add(35);
-        myList.add(80);
-        myList.add(0);
+        Node<Integer> firstNode = new Node<>(70);
+        Node<Integer> secondNode = new Node<>(30);
+        Node<Integer> thirdNode = new Node<>(56);
+        Node<Integer> fourthNode = new Node<>(40);
+        Node<Integer> fifthNode = new Node<>(99);
+        Linked_List<Integer> newList = new Linked_List<>();
 
+              newList.add(firstNode);
+            newList.add(secondNode);
+          newList.add(thirdNode);
+        newList.last(thirdNode);
+        newList.last(firstNode);
+        newList.display();
+        newList.insert(secondNode);
+        newList.display();
+        newList.insertAfter(30,fourthNode);
+        newList.display();
+        newList.delete(40);
+        newList.display();
+        newList.deleteFirst();
+        newList.display();
+        newList.deleteLast();
+        newList.display();
+        System.out.println();
+        Node<Integer> searchedNode = newList.search(30);
+        System.out.println(searchedNode);
+        newList.display();
+Sorted_Linked_List<Integer> myList = new Sorted_Linked_List<>();
+        myList.add(firstNode);
+        myList.add(secondNode);
+        myList.add(thirdNode);
+        myList.add(fourthNode);
+        myList.add(fifthNode);
         myList.display();
+        Stack<Integer> stack = new Stack<>();
+        stack.push(firstNode);
+        stack.push(secondNode);
+        stack.push(thirdNode);
+        stack.print();
+        int element = stack.peekPop();
+        System.out.println();
+        System.out.println(element);
+        Queue<Integer> queue = new Queue<>();
+        queue.enqueue(thirdNode);
+        queue.enqueue(secondNode);
+        queue.enqueue(firstNode);
+        System.out.println(queue.dequeue());
+        queue.printQueue();
+
 
     }
 }
